@@ -1,4 +1,6 @@
-var wsUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/login";
+var loginUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/login";
+var signupUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/signup";
+
 
 function getRootUri() {
     return "ws://" + (document.location.hostname == "" ? "localhost" : document.location.hostname) + ":" +
@@ -7,25 +9,40 @@ function getRootUri() {
 
 
 function login() {
-    websocket = new WebSocket(wsUri);
+    websocket = new WebSocket(loginUri);
     websocket.onopen = function (evt) {
-        onOpen(evt)
+        onOpen(evt,document.getElementById("u3_input").value + "\n" + document.getElementById("u4_input").value);
     };
     websocket.onmessage = function (evt) {
-        onMessage(evt)
+        if (onMessage(evt)=="0") console.log("wrong");
+        else window.open('home.html','_self');
+        websocket.close();
     };
     websocket.onerror = function (evt) {
-        onError(evt)
+        onError(evt);
     };
 }
-function onOpen(evt) {
-    console.log("CONNECTED")
-    websocket.send(document.getElementById("u3_input").value + "\n" + document.getElementById("u4_input").value);
+
+function signup(){
+    websocket = new WebSocket(signupUri);
+    websocket.onopen = function (evt) {
+        onOpen(evt,document.getElementById("u3_input").value + "\n" + document.getElementById("u4_input").value);
+    };
+    websocket.onmessage = function (evt) {
+        if (onMessage(evt)=="0") console.log("failed");
+        else console.log("success");
+    };
+    websocket.onerror = function (evt) {
+        onError(evt);
+    };
+}
+
+function onOpen(evt,msg) {
+    websocket.send(msg);
 }
 
 function onMessage(evt) {
-    if (evt.data == "0") console.log("wrong");
-    else window.open('home.html','_self');
+    return evt.data;
 }
 
 function onError(evt) {

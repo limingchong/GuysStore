@@ -5,16 +5,17 @@ import javax.websocket.server.ServerEndpoint;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@ServerEndpoint("/login")
-public class Login {
+@ServerEndpoint("/signup")
+public class Signup {
     @OnMessage
     public String echo(String message) throws SQLException {
         String str[] = message.split("\n");
         String id = str[0], password = str[1];
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        ResultSet rs = databaseConnection.GetResultFromSqlQuery("SELECT * FROM USERS WHERE ID=\"" + str[0] + "\" AND PASSWORD=\"" + str[1] + "\"");
-        String r = rs.next() ? str[0] : "0";
+        int r = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO USERS VALUES(\"" + str[0] + "\",\"" + str[1] + "\")");
         databaseConnection.CloseConnection();
-        return r;
+
+        // 0 means failed
+        return r == 2 ? "0" : "1";
     }
 }
