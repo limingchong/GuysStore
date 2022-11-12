@@ -47,6 +47,13 @@
     <script src="data/document.js"></script>
     <script src="files/home/data.js"></script>
     <script type="text/javascript">
+      window.onload=function(){
+        var username = localStorage.getItem("username");
+        console.log(username);
+        if (username == 0) window.open('login.html','_self');
+        document.getElementById("u16_text").innerHTML = "<p><span>" + username + "</span></p>";
+        document.getElementById("u58_text").innerHTML = "<p><span>" + username + "</span></p>";
+      };
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };

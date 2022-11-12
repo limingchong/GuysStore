@@ -1,5 +1,6 @@
 var loginUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/login";
 var signupUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/signup";
+var username = 0;
 
 /** For NetBeans:
   var loginUri = getRootUri() + "/GuysStore/login";
@@ -19,7 +20,8 @@ function login() {
         onOpen(evt,document.getElementById("u3_input").value + "\n" + document.getElementById("u4_input").value);
     };
     websocket.onmessage = function (evt) {
-        if (onMessage(evt)=="0") console.log("wrong");
+        localStorage.setItem("username",onMessage(evt));
+        if (localStorage.getItem("username") == 0) console.log("wrong");
         else window.open('home.jsp','_self');
         websocket.close();
     };
