@@ -15,7 +15,7 @@ function login() {
     };
     websocket.onmessage = function (evt) {
         if (onMessage(evt)=="0") console.log("wrong");
-        else window.open('home.html','_self');
+        else window.open('home.jsp','_self');
         websocket.close();
     };
     websocket.onerror = function (evt) {

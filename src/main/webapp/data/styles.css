@@ -74,6 +74,8 @@
 .paragraph {
   text-align:left;
 }
+.line {
+}
 .text_field {
   color:#000000;
   text-align:left;
@@ -92,5 +94,7 @@
   color:#999999;
 }
 .form_disabled {
+}
+.shape {
 }
 textarea, select, input, button { outline: none; }

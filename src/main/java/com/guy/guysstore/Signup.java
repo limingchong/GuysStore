@@ -12,7 +12,7 @@ public class Signup {
         String str[] = message.split("\n");
         String id = str[0], password = str[1];
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        int r = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO USERS VALUES(\"" + str[0] + "\",\"" + str[1] + "\")");
+        int r = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO USERS VALUES(\"" + str[0] + "\",\"" + str[1] + "\"," + "1000" + ")");
         databaseConnection.CloseConnection();
 
         // 0 means failed
