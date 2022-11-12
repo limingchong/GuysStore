@@ -1,6 +1,11 @@
 var loginUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/login";
 var signupUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/signup";
 
+/** For NetBeans:
+  var loginUri = getRootUri() + "/GuysStore/login";
+  var signupUri = getRootUri() + "/GuysStore/signup";
+ */
+
 
 function getRootUri() {
     return "ws://" + (document.location.hostname == "" ? "localhost" : document.location.hostname) + ":" +
