@@ -2,6 +2,8 @@
  * Lab 1 Team 5
  * This program is for testing public-private key encryption and decryption
  */
+package com.guy.guysstore;
+
 public class CryptoSystemTest {
 
 
