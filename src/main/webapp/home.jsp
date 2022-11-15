@@ -192,7 +192,7 @@
                     </div>
 
                     <!-- Paragraph (Rectangle) -->
-                    <div id="u26-1" class="ax_default paragraph u26" data-label="Paragraph"
+                    <div id="u26-${row.id}" class="ax_default paragraph u26" data-label="Paragraph"
                          style="width: 490px; height: 123px; left: 269px; top: 75px;visibility: inherit">
                       <div id="u26-1_div" class="u26_div" style="width: 490px; height: 123px;visibility: inherit"></div>
                       <div id="u26-1_text" class="text u26_text" style="visibility: inherit">
@@ -201,10 +201,10 @@
                     </div>
 
                     <!-- Heading (Rectangle) -->
-                    <div id="u27-1" class="ax_default heading_2 u27" data-label="Heading"
+                    <div id="u27-${row.id}" class="ax_default heading_2 u27" data-label="Heading"
                          style="width: 350px; height: 37px; left: 269px; top: 27px;visibility: inherit">
-                      <div id="u27-1_div" class="u27_div" style="width: 350px; height: 37px;visibility: inherit"></div>
-                      <div id="u27-1_text" class="text u27_text" style="visibility: inherit">
+                      <div id="u27-${row.id}_div" class="u27_div" style="width: 350px; height: 37px;visibility: inherit"></div>
+                      <div id="u27-${row.id}_text" class="text u27_text" style="visibility: inherit">
                         <p><span><c:out value="${row.name}"/></span></p>
                       </div>
                     </div>
@@ -255,7 +255,7 @@
                     </div>
 
                     <!-- Image (Image) -->
-                    <div id="u33-1" class="ax_default image u33" data-label="Image"
+                    <div id="u33-${row.id}" class="ax_default image u33" data-label="Image"
                          style="width: 200px; height: 200px; left: 21px; top: 20px;visibility: inherit">
                       <img id="u33-1_img" class="img u33_img" src="${row.image}"/>
                       <div id="u33-1_text" class="text u33_text" style="display:none; visibility: hidden">
@@ -273,19 +273,19 @@
                     </div>
 
                     <!-- Unnamed (Rectangle) -->
-                    <div id="u35-1" class="ax_default primary_button u35"
-                         style="width: 140px; height: 40px; left: 889px; top: 168px;visibility: inherit"  onclick="addToCart()">
-                      <div id="u35-1_div" class="u35_div" style="width: 140px; height: 40px;visibility: inherit"></div>
-                      <div id="u35-1_text" class="text u35_text" style="visibility: inherit">
+                    <div id="u35-${row.id}" class="ax_default primary_button u35"
+                         style="width: 140px; height: 40px; left: 889px; top: 168px;visibility: inherit"  onclick="addToCart(${row.id})">
+                      <div id="u35-${row.id}_div" class="u35_div" style="width: 140px; height: 40px;visibility: inherit"></div>
+                      <div id="u35-${row.id}_text" class="text u35_text" style="visibility: inherit">
                         <p><span>Add to my cart</span></p>
                       </div>
                     </div>
 
                     <!-- Unnamed (Text Field) -->
-                    <div id="u36-1" class="ax_default text_field u36"
+                    <div id="u36-${row.id}" class="ax_default text_field u36"
                          style="width: 127px; height: 25px; left: 944px; top: 113px;visibility: inherit">
-                      <div id="u36-1_div" class="u36_div" style="width: 127px; height: 25px;visibility: inherit"></div>
-                      <input id="u36-1_input" type="number" value="" class="u36_input"/>
+                      <div id="u36-${row.id}_div" class="u36_div" style="width: 127px; height: 25px;visibility: inherit"></div>
+                      <input id="u36-${row.id}_input" type="number" value="" class="u36_input"/>
                     </div>
                   </div>
                 </c:forEach>

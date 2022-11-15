@@ -19,11 +19,11 @@ function getRootUri() {
 }
 
 
-function addToCart() {
+function addToCart(row_id) {
     websocket = new WebSocket(cartUri);
     websocket.onopen = function (evt) {
-        console.log(document.getElementById("u27-1_text").innerText);
-        onOpen(evt,document.getElementById("u36-1_input").value + "\n" + document.getElementById("u27-1_text").innerText);
+        console.log(document.getElementById("u27-"+row_id.toString()+"_text").innerText);
+        onOpen(evt,document.getElementById("u36-"+row_id.toString()+"_input").value + "\n" + document.getElementById("u27-"+row_id.toString()+"_text").innerText);
     };
     websocket.onmessage = function (evt) {
         console.log(onMessage(evt));
@@ -31,7 +31,8 @@ function addToCart() {
         console.log("result:"+localStorage.getItem("result"));
         if (localStorage.getItem("result") == 0) console.log("no enough goods");
         else if (localStorage.getItem("result") == 1) console.log("negative number");
-        else console.log("Succeed");
+        else if (localStorage.getItem("result") == 2) console.log("Succeed");
+        else if (localStorage.getItem("result") == 3) console.log("Goods no found");
         websocket.close();
     };
     websocket.onerror = function (evt) {

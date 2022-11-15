@@ -19,17 +19,20 @@ public class Cart {
         if (number>=0)
                 {
                     DatabaseConnection databaseConnection = new DatabaseConnection();
-                    ResultSet rs = databaseConnection.GetResultFromSqlQuery("SELECT RESERVE FROM GOODS WHERE NAME=\"" + str[1] + "\"");
+                    ResultSet rs = databaseConnection.GetResultFromSqlQuery("SELECT RESERVE,ID FROM GOODS WHERE NAME=\"" + str[1] + "\"");
                     ResultSetMetaData rsmd = rs.getMetaData();
                     while(rs.next())
                     {
                         int reserve = rs.getInt(rsmd.getColumnName(1));
+                        int id = rs.getInt(rsmd.getColumnName(2));
                         if(number<=reserve)
                         {
                             int updatedReserve = reserve - number;
                             int n = databaseConnection.InsertUpdateFromSqlQuery("UPDATE GOODS SET RESERVE = " + Integer.toString(updatedReserve) + " WHERE NAME=\"" + str[1] + "\"");
+                            int j = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO CARTS VALUES(\"" + "lys" + "\",\"" + Integer.toString(id) + "\"," + number + ")");
                             databaseConnection.CloseConnection();
                             return n == 2 ? 4 : 2;//Succeed
+                            
                         }
                         else{
                             return 0;//no enough
