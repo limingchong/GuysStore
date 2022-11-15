@@ -1,5 +1,5 @@
-var loginUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/login";
-var signupUri = getRootUri() + "/GuysStore-1.0-SNAPSHOT/signup";
+var loginUri = getRootUri() + "/GuysStore/login";
+var signupUri = getRootUri() + "/GuysStore/signup";
 var username = 0;
 
 /** For NetBeans:

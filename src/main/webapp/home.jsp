@@ -45,6 +45,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
+      <script src="files/home/home.js"></script>
     <script src="files/home/data.js"></script>
     <script type="text/javascript">
       window.onload=function(){
@@ -273,7 +274,7 @@
 
                     <!-- Unnamed (Rectangle) -->
                     <div id="u35-1" class="ax_default primary_button u35"
-                         style="width: 140px; height: 40px; left: 889px; top: 168px;visibility: inherit">
+                         style="width: 140px; height: 40px; left: 889px; top: 168px;visibility: inherit"  onclick="addToCart()">
                       <div id="u35-1_div" class="u35_div" style="width: 140px; height: 40px;visibility: inherit"></div>
                       <div id="u35-1_text" class="text u35_text" style="visibility: inherit">
                         <p><span>Add to my cart</span></p>
