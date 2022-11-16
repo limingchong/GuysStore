@@ -1,6 +1,5 @@
-var PUBLISH_MODE = "i";
-var loginUri = getRootUri() + (PUBLISH_MODE == "N" ? "/GuysStore/login" : "/GuysStore-1.0-SNAPSHOT/login");
-var signupUri = getRootUri() + (PUBLISH_MODE == "N" ? "/GuysStore/signup" : "/GuysStore-1.0-SNAPSHOT/signup");
+var loginUri = getRootUri() + "/GuysStore/login";
+var signupUri = getRootUri() + "/GuysStore/signup";
 var username = 0;
 
 
