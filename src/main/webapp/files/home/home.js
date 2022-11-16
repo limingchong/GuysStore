@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
-var loginUri = getRootUri() + "/GuysStore/login";
-var signupUri = getRootUri() + "/GuysStore/signup";
-var cartUri = getRootUri() + "/GuysStore/cart";
+var PUBLISH_MODE = "i";
+var loginUri = getRootUri() + (PUBLISH_MODE == "N" ? "/GuysStore/login" : "/GuysStore-1.0-SNAPSHOT/login");
+var signupUri = getRootUri() + (PUBLISH_MODE == "N" ? "/GuysStore/signup" : "/GuysStore-1.0-SNAPSHOT/signup");
+var cartUri = getRootUri() + (PUBLISH_MODE == "N" ? "/GuysStore/login" : "/GuysStore-1.0-SNAPSHOT/cart");
 var username = 0;
 
 /** For NetBeans:

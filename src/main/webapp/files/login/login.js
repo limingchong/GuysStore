@@ -1,11 +1,7 @@
-var loginUri = getRootUri() + "/GuysStore/login";
-var signupUri = getRootUri() + "/GuysStore/signup";
+var PUBLISH_MODE = "i";
+var loginUri = getRootUri() + (PUBLISH_MODE == "N" ? "/GuysStore/login" : "/GuysStore-1.0-SNAPSHOT/login");
+var signupUri = getRootUri() + (PUBLISH_MODE == "N" ? "/GuysStore/signup" : "/GuysStore-1.0-SNAPSHOT/signup");
 var username = 0;
-
-/** For NetBeans:
-  var loginUri = getRootUri() + "/GuysStore/login";
-  var signupUri = getRootUri() + "/GuysStore/signup";
- */
 
 
 function getRootUri() {
@@ -15,6 +11,7 @@ function getRootUri() {
 
 
 function login() {
+    console.log(loginUri);
     websocket = new WebSocket(loginUri);
     websocket.onopen = function (evt) {
         onOpen(evt,document.getElementById("u3_input").value + "\n" + document.getElementById("u4_input").value);
