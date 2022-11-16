@@ -1,12 +1,16 @@
 package com.guy.guysstore;
 
 import javax.ws.rs.*;
+import javax.jws.*;
+import javax.xml.soap.*;
+import javax.xml.ws.*;
 
-@Path("/test")
+
+@WebService
 public class TestService {
-    @GET
-    @Produces("text/plain")
+    @WebMethod
     public String hello() {
-        return "test Hello, World!";
+        return "test1";
     }
+
 }
