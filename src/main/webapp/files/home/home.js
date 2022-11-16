@@ -5,7 +5,7 @@
 var loginUri = getRootUri() + "/GuysStore/login";
 var signupUri = getRootUri() + "/GuysStore/signup";
 var cartUri = getRootUri() + "/GuysStore/cart";
-var username = 0;
+var deleteCartUri = getRootUri() + "/GuysStore/deleteCart";
 
 /** For NetBeans:
   var loginUri = getRootUri() + "/GuysStore/login";
@@ -23,7 +23,8 @@ function addToCart(row_id) {
     websocket = new WebSocket(cartUri);
     websocket.onopen = function (evt) {
         console.log(document.getElementById("u27-"+row_id.toString()+"_text").innerText);
-        onOpen(evt,document.getElementById("u36-"+row_id.toString()+"_input").value + "\n" + document.getElementById("u27-"+row_id.toString()+"_text").innerText);
+        console.log(localStorage.getItem("username"));
+        onOpen(evt,document.getElementById("u36-"+row_id.toString()+"_input").value + "\n" + document.getElementById("u27-"+row_id.toString()+"_text").innerText + "\n" + localStorage.getItem("username"));
     };
     websocket.onmessage = function (evt) {
         console.log(onMessage(evt));
@@ -34,6 +35,19 @@ function addToCart(row_id) {
         else if (localStorage.getItem("result") == 2) console.log("Succeed");
         else if (localStorage.getItem("result") == 3) console.log("Goods no found");
         websocket.close();
+    };
+    websocket.onerror = function (evt) {
+        onError(evt);
+    };
+}
+function deleteCart(){
+    websocket = new WebSocket(deleteCartUri);
+    websocket.onopen = function (evt) {
+        onOpen(evt,document.getElementById("u3_input").value + "\n" + document.getElementById("u4_input").value);
+    };
+    websocket.onmessage = function (evt) {
+        if (onMessage(evt)=="0") console.log("failed");
+        else console.log("success");
     };
     websocket.onerror = function (evt) {
         onError(evt);

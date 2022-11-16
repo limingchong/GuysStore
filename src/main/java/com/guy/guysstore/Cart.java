@@ -29,7 +29,14 @@ public class Cart {
                         {
                             int updatedReserve = reserve - number;
                             int n = databaseConnection.InsertUpdateFromSqlQuery("UPDATE GOODS SET RESERVE = " + Integer.toString(updatedReserve) + " WHERE NAME=\"" + str[1] + "\"");
-                            int j = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO CARTS VALUES(\"" + "lys" + "\",\"" + Integer.toString(id) + "\"," + number + ")");
+                            if(checkDuplicate(databaseConnection,str[2],id)) 
+                            {
+                                int p = databaseConnection.InsertUpdateFromSqlQuery("UPDATE CARTS SET COUNT = COUNT + "+ Integer.toString(number)+" WHERE user_id = "+"\""+str[2]+"\"" + " and good_id= "+id);
+                            }
+                            else 
+                            {
+                                int j = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO CARTS VALUES(\"" + str[2] + "\",\"" + Integer.toString(id) + "\"," + number + ")");
+                            }                              
                             databaseConnection.CloseConnection();
                             return n == 2 ? 4 : 2;//Succeed
                             
@@ -44,6 +51,10 @@ public class Cart {
         else{
             return 1;//negative number
         }
+    }
+    public boolean checkDuplicate(DatabaseConnection databaseConnection,String userID,int goodID) throws SQLException{
+        ResultSet rs1 = databaseConnection.GetResultFromSqlQuery("SELECT * FROM CARTS WHERE user_id =\"" + userID + "\"" + " and " +"good_id = " + Integer.toString(goodID));
+        return rs1.next();
     }
         
         
