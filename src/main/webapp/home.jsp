@@ -299,7 +299,7 @@
 
             <!-- Unnamed (Inline Frame) -->
             <div id="u37" class="ax_default">
-              <iframe src="Cart.jsp" id="u37_input" scrolling="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              <iframe src="cart.jsp" id="u37_input" scrolling="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>
 
             <!-- Unnamed (Rectangle) -->
