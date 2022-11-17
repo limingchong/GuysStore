@@ -309,7 +309,6 @@
                 <p><span>Total price(￥):</span></p>
               </div>
             </div>
-
             <!-- Unnamed (Rectangle) -->
             <div id="u39" class="ax_default heading_1">
               <div id="u39_div" class=""></div>
