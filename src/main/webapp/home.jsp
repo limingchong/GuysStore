@@ -47,6 +47,7 @@
     <script src="data/document.js"></script>
       <script src="files/home/home.js"></script>
     <script src="files/home/data.js"></script>
+    <script src="files/sendEmail/sendEmail.js"></script>
     <script type="text/javascript">
       window.onload=function(){
         var username = localStorage.getItem("username");
@@ -436,7 +437,7 @@
               </div>
 
               <!-- Unnamed (Rectangle) -->
-              <div id="u56" class="ax_default primary_button">
+              <div id="u56" class="ax_default primary_button" onclick="sendEmail()">
                 <div id="u56_div" class=""></div>
                 <div id="u56_text" class="text ">
                   <p><span>Send</span></p>
