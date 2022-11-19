@@ -1,6 +1,6 @@
 package SOAPs;
 
-import com.sun.org.glassfish.gmbal.ParameterNames;
+
 
 import javax.jws.soap.SOAPBinding;
 import javax.ws.rs.*;

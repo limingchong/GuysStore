@@ -22,7 +22,7 @@ function getRootUri() {
 function addToCart(row_id) {
     websocket = new WebSocket(cartUri);
     websocket.onopen = function (evt) {
-        onOpen(evt,document.getElementById("u87-"+row_id.toString()+"_input").value + "\n" + document.getElementById("u77-"+row_id.toString()+"_text").innerText + "\n" + localStorage.getItem("username"));
+        onOpen(evt,document.getElementById("u87-"+row_id.toString()+"_input").value + "\n" + document.getElementById("u77-"+row_id.toString()+"_text").innerText + "\n" + document.cookie.substring(document.cookie.indexOf("username=") + 9));
     };
     websocket.onmessage = function (evt) {
         console.log(onMessage(evt));
