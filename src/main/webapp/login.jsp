@@ -45,7 +45,6 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/login/login.js"></script>
     <script type="text/javascript">
         $axure.utils.getTransparentGifPath = function () {
             return 'resources/images/transparent.gif';
@@ -60,13 +59,13 @@
         function signin(){
             document.getElementById("user").action = "login";
             document.forms['user'].submit();
-
         }
 
         function signup(){
             document.getElementById("user").action = "signup";
             document.forms['user'].submit();
         }
+
     </script>
 </head>
 <body>
@@ -131,6 +130,13 @@
         <img id="u7_img" class="img " src="images/login/u7.svg"/>
         <div id="u7_text" class="text ">
             <p><span>Sign in Guy's Store</span></p>
+            <p><span>
+                <%
+                    if(request.getParameter("status").equals("success_signup")) out.print("Registration success");
+                    if(request.getParameter("status").equals("wrong_signup")) out.print("Registration failure");
+                    if(request.getParameter("status").equals("wrong")) out.print("User name or password error");
+                %>
+            </span></p>
         </div>
     </div>
 

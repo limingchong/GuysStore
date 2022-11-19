@@ -28,7 +28,7 @@
 
   <servlet>
     <servlet-name>login</servlet-name>
-    <servlet-class>com.guy.servlets.LogIn</servlet-class>
+    <servlet-class>com.guy.restful.LogIn</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>login</servlet-name>
@@ -37,7 +37,7 @@
 
   <servlet>
     <servlet-name>signup</servlet-name>
-    <servlet-class>com.guy.servlets.SignUp</servlet-class>
+    <servlet-class>com.guy.restful.SignUp</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>signup</servlet-name>
