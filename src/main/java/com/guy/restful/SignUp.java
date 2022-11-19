@@ -28,7 +28,7 @@ public class SignUp extends HttpServlet {
         int r = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO USERS VALUES(\"" + username + "\",\"" + password + "\"," + "1000" + ")");
         databaseConnection.CloseConnection();
 
-        if (r == 2) resp.sendRedirect("login.jsp?status=success_signup");
-        else resp.sendRedirect("login.jsp?status=wrong_signup");
+        if (r == 2) resp.sendRedirect("login.jsp?status=wrong_signup");
+        else resp.sendRedirect("login.jsp?status=success_signup");
     }
 }

@@ -29,7 +29,7 @@ public class LogIn extends HttpServlet {
                 resp.addCookie(new Cookie("username",username));
                 resp.sendRedirect("home.jsp");
             }
-            else resp.sendRedirect("login.jsp");
+            else resp.sendRedirect("login.jsp?status=wrong");
         } catch (SQLException e) {
             resp.sendRedirect("login.jsp?status=wrong");
             throw new RuntimeException(e);
