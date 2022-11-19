@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class SimpleSoapClient {
 
-    public static String SendSoapRequest(String operation,String[] paramNames, String[] paramValues){
+    public static String SendSoapRequest(String operation,String[] paramNames, String[] paramValues, String url){
 
         String params = "";
         for (int i = 0; i < paramNames.length; i++) params += "            <" + paramNames[i] + ">"+paramValues[i]+"</" + paramNames[i] + ">\r\n";
@@ -23,12 +23,11 @@ public class SimpleSoapClient {
                 "        </ns2:" + operation + ">\r\n" +
                 "    </soapenv:Body>\r\n" +
                 "</soapenv:Envelope>";
-        return callSoapService(xml);
+        return callSoapService(xml, url);
     }
 
-    static String callSoapService(String soapRequest) {
+    static String callSoapService(String soapRequest, String url) {
         try {
-            String url = "http://localhost:8081/GuysStore/testsoap"; // replace your URL here
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

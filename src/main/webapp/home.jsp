@@ -319,12 +319,13 @@
             </div>
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u40" class="ax_default primary_button">
+            <div id="u40" class="ax_default primary_button" onclick="window.open('buy.jsp','_self')">
               <div id="u40_div" class=""></div>
               <div id="u40_text" class="text ">
                 <p><span>BUY</span></p>
               </div>
             </div>
+
           </div>
         </div>
         <div id="u17_state3" class="panel_state" data-label="support" style="visibility: hidden;">
