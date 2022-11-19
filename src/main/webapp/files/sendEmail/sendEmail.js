@@ -21,8 +21,9 @@ var sendEmailUri = getRootUri() + "/GuysStore/sendEmail";
 function sendEmail() {
     websocket = new WebSocket(sendEmailUri);
     websocket.onopen = function (evt) {
-        console.log(document.getElementById("u47_input").value + "\n" + document.getElementById("u55_input").value + "\n" + document.getElementById("u44_input").value  + "\n" +localStorage.getItem("username"));
-        onOpen(evt,document.getElementById("u47_input").value + "\n" + document.getElementById("u55_input").value + "\n" + document.getElementById("u44_input").value + "\n" + localStorage.getItem("username") );
+        console.log(document.cookie);
+        console.log(document.getElementById("u47_input").value + "\n" + document.getElementById("u55_input").value + "\n" + document.getElementById("u44_input").value  + "\n" +document.cookie.substring(document.cookie.indexOf("username=") + 9));
+        onOpen(evt,document.getElementById("u47_input").value + "\n" + document.getElementById("u55_input").value + "\n" + document.getElementById("u44_input").value + "\n" +document.cookie.substring(document.cookie.indexOf("username=") + 9) );
         
     };
     websocket.onmessage = function (evt) {

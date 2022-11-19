@@ -23,8 +23,8 @@ function addToCart(row_id) {
     websocket = new WebSocket(cartUri);
     websocket.onopen = function (evt) {
         console.log(document.getElementById("u27-"+row_id.toString()+"_text").innerText);
-        console.log(localStorage.getItem("username"));
-        onOpen(evt,document.getElementById("u36-"+row_id.toString()+"_input").value + "\n" + document.getElementById("u27-"+row_id.toString()+"_text").innerText + "\n" + localStorage.getItem("username"));
+        console.log(document.cookie.substring(document.cookie.indexOf("username=") + 9));
+        onOpen(evt,document.getElementById("u36-"+row_id.toString()+"_input").value + "\n" + document.getElementById("u27-"+row_id.toString()+"_text").innerText + "\n" + document.cookie.substring(document.cookie.indexOf("username=") + 9));
     };
     websocket.onmessage = function (evt) {
         console.log(onMessage(evt));

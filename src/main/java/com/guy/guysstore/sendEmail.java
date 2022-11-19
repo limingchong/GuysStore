@@ -21,7 +21,7 @@ import java.util.Scanner;
 @ServerEndpoint("/sendEmail")
 public class sendEmail{
     private Scanner in;
-    private String from = "19726013@bjtu.edu.cn";
+    private String from = "arcturus9z@163.com";
     private PrintWriter out;
     private String returnString,destAddress,title, body;
     @OnMessage
@@ -34,7 +34,7 @@ public class sendEmail{
         
         
         try {
-            Socket s = new Socket("mail.bjtu.edu.cn", 25);
+            Socket s = new Socket("Smtp.163.com", 25);
             try {
                 in = new Scanner(s.getInputStream());
                 out = new PrintWriter(s.getOutputStream(), true/* 表示自动刷新 */);
@@ -67,11 +67,11 @@ public class sendEmail{
     private void authentication(){
         send("Auth Login");
         receive();
-        String username = "19726013@bjtu.edu.cn";
+        String username = "arcturus9z@163.com";
         String username_encoded = java.util.Base64.getEncoder().encodeToString(username.getBytes());
         send(username_encoded);
         receive();
-        String password = "95707071";
+        String password = "IVNNZYSVGXNDABUQ";
         String password_encoded = java.util.Base64.getEncoder().encodeToString(password.getBytes()) ;
         send(password_encoded);
         receive();
