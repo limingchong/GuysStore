@@ -50,7 +50,7 @@
     <script src="files/sendEmail/sendEmail.js"></script>
     <script type="text/javascript">
       window.onload=function(){
-        var username = localStorage.getItem("username");
+        var username = document.cookie.substring(document.cookie.indexOf("username=") + 9);
         console.log(username);
         if (username == 0) window.open('login.html','_self');
         document.getElementById("u16_text").innerHTML = "<p><span>" + username + "</span></p>";
