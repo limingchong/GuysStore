@@ -45,7 +45,7 @@
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
     <script src="files/cart/data.js"></script>
-    
+
     <script src="files/cart/cart.js"></script>
     <script type="text/javascript">
         $axure.utils.getTransparentGifPath = function () {
@@ -68,7 +68,10 @@
     <sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver"
                        url="jdbc:mysql://rm-8vbr8ca021o44ca4euo.mysql.zhangbei.rds.aliyuncs.com:3306/store?autoReconnect=true&useSSL=false"
                        user="group5" password="BJTUgroup5"/>
-    <c:set var="userID" value="group5"/>
+    <script>
+        var username = document.cookie.substring(document.cookie.indexOf("username=") + 9);
+    </script>
+    <c:set var="userID" value="${cookie.username.value}"/>
     <sql:query dataSource="${snapshot}" var="result1">
     SELECT * from carts where user_id = ?
         <sql:param value="${userID}"/>
