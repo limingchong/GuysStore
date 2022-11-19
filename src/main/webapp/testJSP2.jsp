@@ -10,7 +10,7 @@
 <%@ page language="java" %>
 <%@ page import="java.io.*,java.util.*,java.sql.*" %>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-<%@ page import="com.guy.guysstore.*" %>
+<%@ page import="com.guy.guysstore.DatabaseConnection" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
@@ -21,30 +21,15 @@
 <body>
 
 <%
-    DatabaseConnection dc = new DatabaseConnection();
-    ResultSet rs = dc.GetResultFromSqlQuery("SELECT * FROM goods");
-    dc.CloseConnection();
+    com.guy.guysstore.DatabaseConnection databaseConnection = new DatabaseConnection();
+    out.print(request.getParameter("username"));
 %>
-<c:forEach var="id" begin="1" end="5">
 
-    <jsp:useBean id="good_${id}"
-                 class="com.guy.guysstore.Good">
-        <jsp:setProperty name="good_${id}" property="id"
-                         value="${id}"/>
-    </jsp:useBean>
-    <p>name
-        <jsp:getProperty name="good_${id}" property="name"/>
-    </p>
-    <p>reserve
-        <jsp:getProperty name="good_${id}" property="reserve"/>
-    </p>
-    <p>description
-        <jsp:getProperty name="good_${id}" property="description"/>
-    </p>
-    <p>price
-        <jsp:getProperty name="good_${id}" property="price"/>
-    </p>
-</c:forEach>
-
+<form method="POST">
+    Username<input type="text" name="username">
+    <br />
+    Password<input type="text" name="password" />
+    <input type="submit" value="submit" />
+</form>
 </body>
 </html>
