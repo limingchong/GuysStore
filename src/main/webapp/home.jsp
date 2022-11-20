@@ -146,7 +146,7 @@
             <!-- Unnamed (Image) -->
 
 
-            <div id="u18" class="ax_default image">
+            <div id="u18" class="ax_default image" onclick="location.reload()">
               <%
                 String [] ops = new String[1];
                 ops[0] = "param";
@@ -166,31 +166,24 @@
               </div>
             </div>
 
-            <!-- Unnamed (Rectangle) -->
+            <!--
             <div id="u19" class="ax_default primary_button" onclick="location.reload()">
-              <div id="u19_div" class=""></div>
+              <div id="u19_div" class="primary_button"></div>
               <div id="u19_text" class="text ">
                 <p><span>&lt;</span></p>
               </div>
             </div>
-
-            <!-- Unnamed (Rectangle) -->
             <div id="u20" class="ax_default primary_button" onclick="location.reload()">
               <div id="u20_div" class=""></div>
               <div id="u20_text" class="text ">
                 <p><span>&gt;</span></p>
               </div>
             </div>
+            -->
           </div>
         </div>
         <div id="u17_state1" class="panel_state" data-label="goods" style="visibility: hidden;">
           <div id="u17_state1_content" class="panel_state_content">
-
-            <!-- Unnamed (Text Field) -->
-            <div id="u21" class="ax_default text_field">
-              <div id="u21_div" class=""></div>
-              <input id="u21_input" type="text" value="" class="u21_input"/>
-            </div>
 
             <!-- Unnamed (Rectangle) -->
             <div id="u22" class="ax_default primary_button">
