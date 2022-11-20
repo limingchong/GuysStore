@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<%@  page   import= "com.guy.guysstore.CryptoSystemClient"%>
+
 <html>
 <head>
     <title>login</title>
@@ -56,6 +60,8 @@
             return 'resources/reload.html';
         };
 
+
+
         function signin(){
             document.getElementById("user").action = "login";
             document.forms['user'].submit();
@@ -95,19 +101,26 @@
         </div>
     </div>
 
+    <%String usernameStr = request.getParameter("username");
+    <%String passwordStr = request.getParameter("password");
+    %>
+
     <form id="user" action="" method="POST">
+        <!--var JSout = '<%=CryptoSystemClient.encry(passwordStr)%>';-->
         <!-- Unnamed (Text Field) -->
         <div id="u3" class="ax_default text_field">
             <div id="u3_div" class=""></div>
-            <input id="u3_input" type="text" value="" class="u3_input" name="username"/>
+            <input id="u3_input" type="text" value="<%=CryptoSystemClient.encry(usernameStr)%>>" class="u3_input" name="username"/>
         </div>
 
         <!-- Unnamed (Text Field) -->
         <div id="u4" class="ax_default text_field">
             <div id="u4_div" class=""></div>
-            <input id="u4_input" type="password" value="" class="u4_input" name="password"/>
+            <input id="u4_input" type="password" value="<%=CryptoSystemClient.encry(passwordStr)%>>" class="u4_input" name="password"/>
         </div>
     </form>
+
+
 
     <!-- Unnamed (Rectangle) -->
     <div id="u5" class="ax_default button" onclick="signup()">

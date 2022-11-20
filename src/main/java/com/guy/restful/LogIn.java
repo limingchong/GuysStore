@@ -1,6 +1,7 @@
 package com.guy.restful;
 
 import com.guy.guysstore.DatabaseConnection;
+import com.guy.guysstore.CryptoSystemServer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +21,18 @@ public class LogIn extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
+        String username = null;
+        try {
+            username = CryptoSystemServer.decry(req.getParameter("username"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String password = null;
+        try {
+            password = CryptoSystemServer.decry(req.getParameter("password"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         DatabaseConnection databaseConnection = new DatabaseConnection();
         ResultSet rs = databaseConnection.GetResultFromSqlQuery("SELECT * FROM USERS WHERE ID=\"" + username + "\" AND PASSWORD=\"" + password + "\"");
         try {

@@ -8,10 +8,11 @@ import javax.crypto.Cipher;
 public class CryptoSystemServer {
 
     private static final String ALGORITHM = "RSA"; //Rivest-Shamir-Adleman
+    static String priKeyStr = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAI5cG5FVAVrfq6szb4myZJZqpBVEP3Ei5Evkuq5c00DMJChYUr1+ZR8PLLkfOo7DTJKGpBHZ1PzMIEMVR0Llqako9Og9tg+W29utFqDljeTrEgfnfMqCpAEbqnvhNBXCLXGdZv0IebDcKSE1UIl4oSA1TZd41RqG/KCUaEkWOEC5AgMBAAECgYAdu2f4jPfo+lD4wxfW+t6eOayGUogrgV2L6jwBAZsPa/NbR8MUF4tYFsvA6CBLQ8fAzIUEw2mD2MAeMpn9A0lRHJiHFG+nzInRIzlQ28sxHfqQAg2J/BeN9I9YzeeS7vZSKPTHtjd4w1bOl/LnPlr66y8y3k7OttV6dgEx11hHOQJBAJZS45RL+NRqd+nXkrweRMzZJeFwxBfzhBVW+76djlVlq21vRWwDh2GsBEEvcCFNcBEHlDpOUKCsKU8ioKgBnEUCQQDyb/l6Wk7wuMkuFHBEdhIEb71YMMaxSKznGtngsIeLurn1q8BFVEzeUzgdgDXi/4mJBBxoxhRyrZ76UO3zFovlAkBTPdU+Mo+4+Lgsaq6bs1s/4GNkonBEHxoeQwums1K1IVa7g+l6db3LLVkxy5YZKuuK0pqXavSk9JDvfGpgfnvNAkEAiBZ7AEd5UH8pzwgCDSwJ6RugOcUHg7S7+e6Epy/wpmrmwBTtFP3BOHuWYFj75rRyy8rW96lZCRaUywZqy624UQJAHmwNxFcg7vTHxyCbX1zQFL6ALibx6sH27eGL86ePmS/FtfUvD2qluFdxymftmLH5ZbuoKbVb62wfOnKySQOFRQ==";
 
-    String priKeyStr = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAI5cG5FVAVrfq6szb4myZJZqpBVEP3Ei5Evkuq5c00DMJChYUr1+ZR8PLLkfOo7DTJKGpBHZ1PzMIEMVR0Llqako9Og9tg+W29utFqDljeTrEgfnfMqCpAEbqnvhNBXCLXGdZv0IebDcKSE1UIl4oSA1TZd41RqG/KCUaEkWOEC5AgMBAAECgYAdu2f4jPfo+lD4wxfW+t6eOayGUogrgV2L6jwBAZsPa/NbR8MUF4tYFsvA6CBLQ8fAzIUEw2mD2MAeMpn9A0lRHJiHFG+nzInRIzlQ28sxHfqQAg2J/BeN9I9YzeeS7vZSKPTHtjd4w1bOl/LnPlr66y8y3k7OttV6dgEx11hHOQJBAJZS45RL+NRqd+nXkrweRMzZJeFwxBfzhBVW+76djlVlq21vRWwDh2GsBEEvcCFNcBEHlDpOUKCsKU8ioKgBnEUCQQDyb/l6Wk7wuMkuFHBEdhIEb71YMMaxSKznGtngsIeLurn1q8BFVEzeUzgdgDXi/4mJBBxoxhRyrZ76UO3zFovlAkBTPdU+Mo+4+Lgsaq6bs1s/4GNkonBEHxoeQwums1K1IVa7g+l6db3LLVkxy5YZKuuK0pqXavSk9JDvfGpgfnvNAkEAiBZ7AEd5UH8pzwgCDSwJ6RugOcUHg7S7+e6Epy/wpmrmwBTtFP3BOHuWYFj75rRyy8rW96lZCRaUywZqy624UQJAHmwNxFcg7vTHxyCbX1zQFL6ALibx6sH27eGL86ePmS/FtfUvD2qluFdxymftmLH5ZbuoKbVb62wfOnKySQOFRQ==";
 
-    public String encry(String inputData) throws Exception {
+    public static String encry(String inputData) throws Exception {
+
         KeyFactory kf = KeyFactory.getInstance("RSA");
         byte[] priKeyByte  = Base64.getDecoder().decode(priKeyStr);
         PrivateKey privateKey = kf.generatePrivate(new PKCS8EncodedKeySpec(priKeyByte));
@@ -22,7 +23,7 @@ public class CryptoSystemServer {
         //return encryptedBytes;
     }
 
-    public String decry(String inputData)throws Exception {
+    public static String decry(String inputData)throws Exception {
 
         byte[] priKeyByte  = Base64.getDecoder().decode(priKeyStr);
         KeyFactory kf = KeyFactory.getInstance("RSA");
