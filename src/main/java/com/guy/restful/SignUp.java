@@ -4,6 +4,7 @@ package com.guy.restful;
 import com.guy.guysstore.CryptoSystemClient;
 import com.guy.guysstore.DatabaseConnection;
 import com.guy.guysstore.CryptoSystemServer;
+import com.guy.guysstore.Redirector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,7 @@ public class SignUp extends HttpServlet {
         int r = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO USERS VALUES(\"" + username + "\",\"" + password + "\"," + "1000" + ")");
         databaseConnection.CloseConnection();
 
-        if (r == 2) resp.sendRedirect("login.jsp?status=wrong_signup");
-        else resp.sendRedirect("login.jsp?status=success_signup");
+        if (r == 2) Redirector.R(resp,"login.jsp?status=wrong_signup");
+        else Redirector.R(resp,"login.jsp?status=success_signup");
     }
 }

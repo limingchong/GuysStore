@@ -141,9 +141,9 @@
             <p><span>Sign in Guy's Store</span></p>
             <p><span>
                 <%
-                    if(request.getParameter("status").equals("success_signup")) out.print("Registration success");
-                    if(request.getParameter("status").equals("wrong_signup")) out.print("Registration failure");
-                    if(request.getParameter("status").equals("wrong")) out.print("User name or password error");
+                    if(request.getParameter("status").equals("success_signup")) out.print("<p style=\"color:green\">Registration success</p>");
+                    if(request.getParameter("status").equals("wrong_signup")) out.print("<p style=\"color:red\">Registration failure</p>");
+                    if(request.getParameter("status").equals("wrong")) out.print("<p style=\"color:red\">User name or password error</p>");
                 %>
             </span></p>
         </div>

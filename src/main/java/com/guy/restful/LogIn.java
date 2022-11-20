@@ -3,6 +3,7 @@ package com.guy.restful;
 import com.guy.guysstore.CryptoSystemClient;
 import com.guy.guysstore.DatabaseConnection;
 import com.guy.guysstore.CryptoSystemServer;
+import com.guy.guysstore.Redirector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,11 +31,11 @@ public class LogIn extends HttpServlet {
         try {
             if (rs.next() && CryptoSystemServer.decry(rs.getString(1)).equals(password)){
                 resp.addCookie(new Cookie("username",username));
-                resp.sendRedirect("home.jsp");
+                Redirector.R(resp,"home.jsp");
             }
-            else resp.sendRedirect("login.jsp?status=wrong");
+            else Redirector.R(resp,"login.jsp?status=wrong");
         } catch (Exception e) {
-            resp.sendRedirect("login.jsp?status=wrong");
+            Redirector.R(resp,"login.jsp?status=wrong");
             throw new RuntimeException(e);
         }
         databaseConnection.CloseConnection();

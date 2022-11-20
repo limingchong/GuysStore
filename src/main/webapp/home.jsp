@@ -65,6 +65,18 @@
         var username = document.cookie.indexOf(";",document.cookie.indexOf("username")) == -1 ? document.cookie.substring(document.cookie.indexOf("username=") + 9): document.cookie.substring(document.cookie.indexOf("username=") + 9,document.cookie.indexOf(";",document.cookie.indexOf("username")));
         window.open('buy.jsp?username='+username);
       }
+
+      function logout(){
+        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+          for (var i = keys.length; i--;) {
+            document.cookie = keys[i] + '=0;path=/;expires=' + new Date(0).toUTCString();
+            document.cookie = keys[i] + '=0;path=/;domain=' + document.domain + ';expires=' + new Date(0).toUTCString();
+            document.cookie = keys[i] + '=0;path=/;domain=kevis.com;expires=' + new Date(0).toUTCString();
+          }
+        }
+        window.open('login.jsp?status','_self');
+      }
     </script>
   </head>
   <body>
@@ -147,7 +159,7 @@
                 String []imgs = new String[strs.length - 1];
                 for (int i = 1; i < strs.length; i++)imgs[i - 1] = strs[i].substring(0,strs[i].indexOf("</return>") - 1);
 
-                for (String img : imgs) out.print("<image id=\"u18_img\" class=\"img \" src=\""+ img +"\"\\>\n");
+                out.print("<image id=\"u18_img\" class=\"img \" src=\""+ imgs[1] +"\"\\>\n");
               %>
               <div id="u18_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
@@ -155,7 +167,7 @@
             </div>
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u19" class="ax_default primary_button">
+            <div id="u19" class="ax_default primary_button" onclick="location.reload()">
               <div id="u19_div" class=""></div>
               <div id="u19_text" class="text ">
                 <p><span>&lt;</span></p>
@@ -163,7 +175,7 @@
             </div>
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u20" class="ax_default primary_button">
+            <div id="u20" class="ax_default primary_button" onclick="location.reload()">
               <div id="u20_div" class=""></div>
               <div id="u20_text" class="text ">
                 <p><span>&gt;</span></p>
@@ -515,7 +527,7 @@
             
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u61" class="ax_default primary_button">
+            <div id="u61" class="ax_default primary_button" onclick="logout()">
               <div id="u61_div" class=""></div>
               <div id="u61_text" class="text ">
                 <p><span>Log out</span></p>
