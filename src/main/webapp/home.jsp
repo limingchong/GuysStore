@@ -59,6 +59,11 @@
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+
+      function buy() {
+        var username = document.cookie.indexOf(";",document.cookie.indexOf("username")) == -1 ? document.cookie.substring(document.cookie.indexOf("username=") + 9): document.cookie.substring(document.cookie.indexOf("username=") + 9,document.cookie.indexOf(";",document.cookie.indexOf("username")));
+        window.open('buy.jsp?username='+username);
+      }
     </script>
   </head>
   <body>
@@ -340,7 +345,7 @@
             </div>
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u40" class="ax_default primary_button" onclick="window.open('buy.jsp','_self')">
+            <div id="u40" class="ax_default primary_button" onclick="buy()">
               <div id="u40_div" class=""></div>
               <div id="u40_text" class="text ">
                 <p><span>BUY</span></p>

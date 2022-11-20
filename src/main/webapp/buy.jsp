@@ -18,7 +18,7 @@
     ops[0] = "username";
 
     String [] vs = new String[1];
-    vs[0] = "admin";
+    vs[0] = request.getParameter("username");
 
     String images = SimpleSoapClient.SendSoapRequest("getImages",ops,vs,"http://localhost:8080/GuysStore/TestService");
     String []strs = images.split("<return>");
