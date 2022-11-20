@@ -8,10 +8,11 @@ import javax.crypto.Cipher;
 public class CryptoSystemClient {
 
     private static final String ALGORITHM = "RSA"; //Rivest-Shamir-Adleman
+    static String pubKeyStr = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOXBuRVQFa36urM2+JsmSWaqQVRD9xIuRL5LquXNNAzCQoWFK9fmUfDyy5HzqOw0yShqQR2dT8zCBDFUdC5ampKPToPbYPltvbrRag5Y3k6xIH53zKgqQBG6p74TQVwi1xnWb9CHmw3CkhNVCJeKEgNU2XeNUahvyglGhJFjhAuQIDAQAB";
 
-    String pubKeyStr = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOXBuRVQFa36urM2+JsmSWaqQVRD9xIuRL5LquXNNAzCQoWFK9fmUfDyy5HzqOw0yShqQR2dT8zCBDFUdC5ampKPToPbYPltvbrRag5Y3k6xIH53zKgqQBG6p74TQVwi1xnWb9CHmw3CkhNVCJeKEgNU2XeNUahvyglGhJFjhAuQIDAQAB";
 
-    public String encry(String inputData) throws Exception {
+    public static String encry(String inputData) throws Exception {
+
         KeyFactory kf = KeyFactory.getInstance("RSA");
         byte[] pubKeyByte  = Base64.getDecoder().decode(pubKeyStr);
         PublicKey publicKey = kf.generatePublic(new X509EncodedKeySpec(pubKeyByte));
@@ -22,7 +23,8 @@ public class CryptoSystemClient {
         //return encryptedBytes;
     }
 
-    public String decry(String inputData)throws Exception {
+    public static String decry(String inputData)throws Exception {
+
         byte[] pubKeyByte  = Base64.getDecoder().decode(pubKeyStr);
         KeyFactory kf = KeyFactory.getInstance("RSA");
         PublicKey publicKey = kf.generatePublic(new X509EncodedKeySpec(pubKeyByte));
