@@ -1,6 +1,7 @@
 <%@ page import="javax.xml.ws.Endpoint" %>
 <%@ page import="SOAPs.TestService" %>
-<%@ page import="SOAPs.SimpleSoapClient" %><%--
+<%@ page import="SOAPs.SimpleSoapClient" %>
+<%@ page import="com.guy.guysstore.DatabaseConnection" %><%--
   Created by IntelliJ IDEA.
   User: 10134
   Date: 2022/11/18
@@ -27,6 +28,8 @@
 
     out.print("\n");
     for (String img : imgs) out.print("<image src=\""+ img +"\"\\>\n");
-%>>
+    com.guy.guysstore.DatabaseConnection databaseConnection = new DatabaseConnection();
+    int p = databaseConnection.InsertUpdateFromSqlQuery("DELETE FROM CARTS WHERE user_id ="+"\""+ request.getParameter("username") +"\"" );
+%>
 </body>
 </html>

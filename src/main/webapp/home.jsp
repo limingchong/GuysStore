@@ -68,13 +68,7 @@
 
       function logout(){
         var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-        if (keys) {
-          for (var i = keys.length; i--;) {
-            document.cookie = keys[i] + '=0;path=/;expires=' + new Date(0).toUTCString();
-            document.cookie = keys[i] + '=0;path=/;domain=' + document.domain + ';expires=' + new Date(0).toUTCString();
-            document.cookie = keys[i] + '=0;path=/;domain=kevis.com;expires=' + new Date(0).toUTCString();
-          }
-        }
+        if(keys) for(var i = keys.length; i--;) document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString();
         window.open('login.jsp?status','_self');
       }
     </script>
