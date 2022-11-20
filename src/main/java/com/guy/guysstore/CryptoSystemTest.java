@@ -12,7 +12,7 @@ public class CryptoSystemTest {
         CryptoSystemClient CSClient = new CryptoSystemClient();
         CryptoSystemServer CSServer = new CryptoSystemServer();
 
-        String clientMsg = "LMC Nantong Chaoren!";
+        String clientMsg = "114514";
         String serverMsg = "Nantong Chaoren LMC!";
 
         //client生成密文(String格式）
