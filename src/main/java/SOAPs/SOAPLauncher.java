@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class SOAPLauncher {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         String [] ops = new String[1];
         ops[0] = "param";
 

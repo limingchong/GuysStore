@@ -4,6 +4,7 @@ import com.guy.guysstore.DatabaseConnection;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import java.awt.*;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Random;
@@ -35,14 +36,13 @@ public class RandomPic {
         rsn.next();
         int nump = rsn.getInt(1);
         int[] ID = new int[nump];
-        Images[] images = new Images[nump];
+        Images images = new Images(nump);
         List<Integer> listRandom = new ArrayList<>();
         databaseConnection.CloseConnection();
         for(int i=1; i <=nump; i++) listRandom.add(i);
 
         for(int i=0;i<nump;i++){
             int index = getRandom(0,listRandom.size()-1);
-            System.out.println(index+ "," + nump + "," + i);
             ID[i] =listRandom.get(index);
             listRandom.remove(index);
         }
@@ -52,9 +52,11 @@ public class RandomPic {
         
         for(int i=0;i<nump;i++){
             DatabaseConnection DatabaseConnection = new DatabaseConnection();
-            rs[i] = DatabaseConnection.GetResultFromSqlQuery("SELECT image FROM store.goodsimage WHERE ID="+ID[i]+";");
-            images[i].addImage(rs[i].getString(1));
-            result[i] = images[i].getImage();
+            rs[i] = DatabaseConnection.GetResultFromSqlQuery("SELECT image FROM store.goods WHERE ID="+ID[i]+";");
+            if (rs[i].next()){
+                images.addImage(rs[i].getString(1));
+                result[i] = images.getImage(i);
+            }
             DatabaseConnection.CloseConnection();
         }
         return result;
