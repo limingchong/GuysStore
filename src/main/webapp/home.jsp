@@ -179,14 +179,6 @@
         <div id="u17_state1" class="panel_state" data-label="goods" style="visibility: hidden;">
           <div id="u17_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Rectangle) -->
-            <div id="u22" class="ax_default primary_button">
-              <div id="u22_div" class=""></div>
-              <div id="u22_text" class="text ">
-                <p><span>Search</span></p>
-              </div>
-            </div>
-
             <!-- Unnamed (Repeater) -->
             <sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver"
                                url="jdbc:mysql://rm-8vbr8ca021o44ca4euo.mysql.zhangbei.rds.aliyuncs.com:3306/store?autoReconnect=true&useSSL=false"
