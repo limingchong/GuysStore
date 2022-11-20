@@ -12,8 +12,7 @@ public class SimpleSoapClient {
     public static String SendSoapRequest(String operation,String[] paramNames, String[] paramValues, String url){
 
         String params = "";
-        for (int i = 0; i < paramNames.length; i++) params += "            <" + paramNames[i] + ">"+paramValues[i]+"</" + paramNames[i] + ">\r\n";
-
+        if(paramNames != null) for (int i = 0; i < paramNames.length; i++) params += "            <" + paramNames[i] + ">"+paramValues[i]+"</" + paramNames[i] + ">\r\n";
 
         String xml="<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n" +
                 "   <soapenv:Header/>\r\n" +
@@ -23,6 +22,7 @@ public class SimpleSoapClient {
                 "        </ns2:" + operation + ">\r\n" +
                 "    </soapenv:Body>\r\n" +
                 "</soapenv:Envelope>";
+        System.out.println(xml);
         return callSoapService(xml, url);
     }
 

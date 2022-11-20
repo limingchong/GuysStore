@@ -4,6 +4,7 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ page import="SOAPs.SimpleSoapClient" %>
 
 <!DOCTYPE html>
 <html>
@@ -50,9 +51,9 @@
     <script src="files/sendEmail/sendEmail.js"></script>
     <script type="text/javascript">
       window.onload=function(){
-        var username = document.cookie.substring(document.cookie.indexOf("username=") + 9);
-        console.log(username);
-        if (username == 0) window.open('login.html','_self');
+        var username = document.cookie.substring(document.cookie.indexOf("username=") + 9,document.cookie.indexOf(";",document.cookie.indexOf("username=")));
+        console.log(document.cookie);
+        if (username == null) window.open('login.jsp?status','_self');
         document.getElementById("u16_text").innerHTML = "<p><span>" + username + "</span></p>";
         document.getElementById("u58_text").innerHTML = "<p><span>" + username + "</span></p>";
       };
@@ -126,13 +127,30 @@
           <div id="u17_state0_content" class="panel_state_content">
 
             <!-- Unnamed (Image) -->
+
+
             <div id="u18" class="ax_default image">
               <img id="u18_img" class="img " src="images/home/u18.svg"/>
               <div id="u18_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
             </div>
+            <%
+              String [] ops = new String[1];
+              ops[0] = "param";
 
+              String [] vs = new String[1];
+              vs[0] = "null";
+
+              String images = SimpleSoapClient.SendSoapRequest("RandomPic",ops,vs,"http://localhost:8080/GuysStore/RandomPic");
+              out.print(images);
+              String []strs = images.split("<return>");
+              String []imgs = new String[strs.length - 1];
+              for (int i = 1; i < strs.length; i++)imgs[i - 1] = strs[i].substring(0,strs[i].indexOf("</return>") - 1);
+
+              out.print("\n");
+              for (String img : imgs) out.print("<image src=\""+ img +"\"\\>\n");
+            %>
             <!-- Unnamed (Rectangle) -->
             <div id="u19" class="ax_default primary_button">
               <div id="u19_div" class=""></div>

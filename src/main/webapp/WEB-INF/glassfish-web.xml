@@ -51,8 +51,15 @@
             <description>Keep a copy of the generated servlet class' java code.</description>
         </property>
     </jsp-config>
+
     <webservice-description>
         <webservice-description-name>TestService</webservice-description-name>
         <wsdl-publish-location>http://localhost:8080/GuysStore/TestService?wsdl</wsdl-publish-location>
     </webservice-description>
+
+    <webservice-description>
+        <webservice-description-name>RandomPic</webservice-description-name>
+        <wsdl-publish-location>http://localhost:8080/GuysStore/RandomPic?wsdl</wsdl-publish-location>
+    </webservice-description>
+
 </glassfish-web-app>
