@@ -57,7 +57,10 @@
             return 'resources/reload.html';
         };
 
-
+        window.onload=function() {
+            var username = document.cookie.indexOf(";", document.cookie.indexOf("username")) == -1 ? document.cookie.substring(document.cookie.indexOf("username=") + 9) : document.cookie.substring(document.cookie.indexOf("username=") + 9, document.cookie.indexOf(";", document.cookie.indexOf("username")));
+            if (username != "") window.open('home.jsp', '_self');
+        }
 
         function signin(){
             document.getElementById("user").action = "login";

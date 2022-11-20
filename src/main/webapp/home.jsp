@@ -51,9 +51,8 @@
     <script src="files/sendEmail/sendEmail.js"></script>
     <script type="text/javascript">
       window.onload=function(){
-        var username = document.cookie.substring(document.cookie.indexOf("username=") + 9,document.cookie.indexOf(";",document.cookie.indexOf("username=")));
-        console.log(document.cookie);
-        if (username == null) window.open('login.jsp?status','_self');
+        var username = document.cookie.indexOf(";",document.cookie.indexOf("username")) == -1 ? document.cookie.substring(document.cookie.indexOf("username=") + 9): document.cookie.substring(document.cookie.indexOf("username=") + 9,document.cookie.indexOf(";",document.cookie.indexOf("username")));
+        if (username == "") window.open('login.jsp?status','_self');
         document.getElementById("u16_text").innerHTML = "<p><span>" + username + "</span></p>";
         document.getElementById("u58_text").innerHTML = "<p><span>" + username + "</span></p>";
       };

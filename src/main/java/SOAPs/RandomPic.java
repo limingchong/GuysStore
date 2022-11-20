@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/WebServices/WebService.java to edit this template
- */
 package SOAPs;
 
 import com.guy.guysstore.DatabaseConnection;
@@ -22,8 +18,7 @@ public class RandomPic {
     
     public int getRandom(int min, int max){
         Random random = new Random();
-        if(min<max) return random.nextInt( max - min + 1 ) + min;
-        else return min;
+        return random.nextInt( max - min + 1 ) + min;
     }
 
     /**
@@ -42,11 +37,11 @@ public class RandomPic {
         int[] ID = new int[nump];
         Images[] images = new Images[nump];
         List<Integer> listRandom = new ArrayList<>();
-
+        databaseConnection.CloseConnection();
         for(int i=1; i <=nump; i++) listRandom.add(i);
 
         for(int i=0;i<nump;i++){
-            int index = getRandom(1,listRandom.size()-1);
+            int index = getRandom(0,listRandom.size()-1);
             System.out.println(index+ "," + nump + "," + i);
             ID[i] =listRandom.get(index);
             listRandom.remove(index);
@@ -60,8 +55,8 @@ public class RandomPic {
             rs[i] = DatabaseConnection.GetResultFromSqlQuery("SELECT image FROM store.goodsimage WHERE ID="+ID[i]+";");
             images[i].addImage(rs[i].getString(1));
             result[i] = images[i].getImage();
+            DatabaseConnection.CloseConnection();
         }
-        databaseConnection.CloseConnection();
         return result;
     }
 }

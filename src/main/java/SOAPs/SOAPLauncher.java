@@ -13,11 +13,6 @@ public class SOAPLauncher {
         vs[0] = "admin";
 
         Endpoint.publish("http://localhost:8081/GuysStore/testsoap?wsdl",new RandomPic());
-        //System.out.println(SimpleSoapClient.SendSoapRequest("RandomPic",ops,vs,"http://localhost:8081/GuysStore/testsoap"));
-        try {
-            System.out.println(new RandomPic().RandomPic(""));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println(SimpleSoapClient.SendSoapRequest("RandomPic",ops,vs,"http://localhost:8081/GuysStore/testsoap"));
     }
 }
