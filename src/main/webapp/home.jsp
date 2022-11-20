@@ -188,7 +188,13 @@
             <sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver"
                                url="jdbc:mysql://rm-8vbr8ca021o44ca4euo.mysql.zhangbei.rds.aliyuncs.com:3306/store?autoReconnect=true&useSSL=false"
                                user="group5" password="BJTUgroup5"/>
-
+                        <c:set var="userID" value="${cookie.username.value}"/>
+            <sql:query dataSource="${snapshot}" var="result4">
+                SELECT ifnull(SUM(COUNT*PRICE),0) as S, ifnull(SUM(COUNT),0) as C, ifnull((100-SUM(COUNT*PRICE)),0) as B from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}";
+            </sql:query>
+            <sql:query dataSource="${snapshot}" var="result5">
+                SELECT ifnull(name,"Not yet") as N from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}" ORDER BY count DESC limit 1;
+            </sql:query>
             <sql:query dataSource="${snapshot}" var="result">
               SELECT * from goods;
             </sql:query>
@@ -490,14 +496,15 @@
                 <p></p>
               </div>
             </div>
-
+            
             <!-- Unnamed (Rectangle) -->
             <div id="u60" class="ax_default heading_2">
               <div id="u60_div" class=""></div>
               <div id="u60_text" class="text ">
-                <p><span>Balance:</span></p>
+                <p><span>In Total:</span></p>
               </div>
             </div>
+            
 
             <!-- Unnamed (Rectangle) -->
             <div id="u61" class="ax_default primary_button">
@@ -506,15 +513,16 @@
                 <p><span>Log out</span></p>
               </div>
             </div>
-
+            <c:forEach var="row" items="${result4.rows}">
             <!-- Unnamed (Rectangle) -->
             <div id="u62" class="ax_default label">
               <div id="u62_div" class=""></div>
               <div id="u62_text" class="text ">
-                <p><span>100.00 $</span></p>
+                <p><span><c:out value="${row.S}"/> $</span></p>
               </div>
             </div>
-
+            </c:forEach>
+            
             <!-- Unnamed (Rectangle) -->
             <div id="u63" class="ax_default heading_2">
               <div id="u63_div" class=""></div>
@@ -522,30 +530,33 @@
                 <p><span>Purchased:</span></p>
               </div>
             </div>
-
+            <c:forEach var="row" items="${result4.rows}">
             <!-- Unnamed (Rectangle) -->
             <div id="u64" class="ax_default label">
               <div id="u64_div" class=""></div>
               <div id="u64_text" class="text ">
-                <p><span>100.00 $</span></p>
+                <p><span><c:out value="${row.C}"/> Items</span></p>
               </div>
             </div>
+            </c:forEach>
 
             <!-- Unnamed (Rectangle) -->
             <div id="u65" class="ax_default heading_2">
               <div id="u65_div" class=""></div>
               <div id="u65_text" class="text ">
-                <p><span>Purchased:</span></p>
+                <p><span>Favorite:</span></p>
               </div>
             </div>
 
+            <c:forEach var="row" items="${result5.rows}">
             <!-- Unnamed (Rectangle) -->
             <div id="u66" class="ax_default label">
               <div id="u66_div" class=""></div>
               <div id="u66_text" class="text ">
-                <p><span>100.00 $</span></p>
+                <p><span><c:out value="${row.N}"/></span></p>
               </div>
             </div>
+            </c:forEach>
 
             <!-- Unnamed (Rectangle) -->
             <div id="u67" class="ax_default heading_2">
@@ -554,16 +565,17 @@
                 <p><span>Balance:</span></p>
               </div>
             </div>
-
+            <c:forEach var="row" items="${result4.rows}">
             <!-- Unnamed (Rectangle) -->
             <div id="u68" class="ax_default label">
               <div id="u68_div" class=""></div>
               <div id="u68_text" class="text ">
-                <p><span>100.00 $</span></p>
+                <p><span><c:out value="${row.B}"/> $</span></p>
               </div>
             </div>
+            </c:forEach>
 
-            <!-- Unnamed (Rectangle) -->
+<!--             Unnamed (Rectangle) 
             <div id="u69" class="ax_default heading_2">
               <div id="u69_div" class=""></div>
               <div id="u69_text" class="text ">
@@ -571,7 +583,7 @@
               </div>
             </div>
 
-            <!-- Unnamed (Rectangle) -->
+             Unnamed (Rectangle) 
             <div id="u70" class="ax_default label">
               <div id="u70_div" class=""></div>
               <div id="u70_text" class="text ">
@@ -579,7 +591,7 @@
               </div>
             </div>
 
-            <!-- Unnamed (Rectangle) -->
+             Unnamed (Rectangle) 
             <div id="u71" class="ax_default heading_2">
               <div id="u71_div" class=""></div>
               <div id="u71_text" class="text ">
@@ -587,13 +599,13 @@
               </div>
             </div>
 
-            <!-- Unnamed (Rectangle) -->
+             Unnamed (Rectangle) 
             <div id="u72" class="ax_default label">
               <div id="u72_div" class=""></div>
               <div id="u72_text" class="text ">
                 <p><span>100.00 $</span></p>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
