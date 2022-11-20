@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ page import="SOAPs.SimpleSoapClient" %>
+<%@ page import="com.guy.guysstore.DatabaseConnection" %>
 
 <!DOCTYPE html>
 <html>
@@ -340,7 +341,11 @@
             <div id="u39" class="ax_default heading_1">
               <div id="u39_div" class=""></div>
               <div id="u39_text" class="text ">
-                <p><span>100</span></p>
+                <p><span>
+                  <%
+                    out.print("123");
+                  %>
+                </span></p>
               </div>
             </div>
 

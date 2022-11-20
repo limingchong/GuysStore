@@ -7,11 +7,19 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class servlets {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Socket server = new Socket();
         InetSocketAddress address = new InetSocketAddress("127.0.0.1",8080);
-        server.connect(address, 300);
+        try {
+            server.connect(address, 300);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         server.isConnected();
-        server.close();
+        try {
+            server.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
