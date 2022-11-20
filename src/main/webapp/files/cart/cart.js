@@ -41,7 +41,8 @@ function addToCart(row_id) {
 function decreaseCart(row_id){
     websocket = new WebSocket(deleteCartUri);
     websocket.onopen = function (evt) {
-        onOpen(evt,document.getElementById("u87-"+row_id.toString()+"_input").value + "\n" + row_id.toString() + "\n" + localStorage.getItem("username"));
+        console.log(document.getElementById("u87-"+row_id.toString()+"_input").value + "\n" + row_id.toString() + "\n" + document.cookie.substring(document.cookie.indexOf("username=") + 9));
+        onOpen(evt,document.getElementById("u87-"+row_id.toString()+"_input").value + "\n" + row_id.toString() + "\n" + document.cookie.substring(document.cookie.indexOf("username=") + 9));
     };
     websocket.onmessage = function (evt) {
         console.log(onMessage(evt));

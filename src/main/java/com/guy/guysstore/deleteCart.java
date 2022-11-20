@@ -4,6 +4,7 @@
  */
 package com.guy.guysstore;
 
+import static java.lang.System.out;
 import javax.websocket.OnMessage;
 import javax.websocket.server.ServerEndpoint;
 import java.sql.ResultSet;
@@ -17,10 +18,11 @@ public class deleteCart {
         String str[] = message.split("\n");
         int number = Integer.parseInt(str[0]);
         int id = Integer.parseInt(str[1]);
+        String user = str[2];
         if (number>=0)
                 {
                     DatabaseConnection databaseConnection = new DatabaseConnection();
-                    ResultSet rs = databaseConnection.GetResultFromSqlQuery("SELECT RESERVE, COUNT FROM GOODS INNER JOIN CARTS WHERE ID=GOOD_ID AND ID=" + str[1]);
+                    ResultSet rs = databaseConnection.GetResultFromSqlQuery("SELECT RESERVE, COUNT FROM GOODS INNER JOIN CARTS WHERE ID=GOOD_ID AND ID ="+ id +" AND USER_ID =" + "\""+ str[2] +"\"");
                     ResultSetMetaData rsmd = rs.getMetaData();
                     while(rs.next())
                     {
@@ -29,8 +31,8 @@ public class deleteCart {
                         if(cartNumber>number)
                         {
                             int updatedReserve = reserve + number;
-                            int n = databaseConnection.InsertUpdateFromSqlQuery("UPDATE GOODS SET RESERVE = " + Integer.toString(updatedReserve) + " WHERE ID=" + str[1]);
-                            int p = databaseConnection.InsertUpdateFromSqlQuery("UPDATE CARTS SET COUNT = COUNT - "+ Integer.toString(number)+" WHERE user_id = "+"\""+str[2]+"\"" + " and good_id= "+id);                                                                                   
+                            int n = databaseConnection.InsertUpdateFromSqlQuery("UPDATE GOODS SET RESERVE = " + Integer.toString(updatedReserve) + " WHERE ID=" + id);
+                            int p = databaseConnection.InsertUpdateFromSqlQuery("UPDATE CARTS SET COUNT = COUNT - "+ Integer.toString(number)+" WHERE user_id = "+"\""+ user +"\"" + " and good_id= "+id);                                                                                   
                             databaseConnection.CloseConnection();
                             return (n == 2 ||p==2) ? 4 : 2;//Succeed
                             
