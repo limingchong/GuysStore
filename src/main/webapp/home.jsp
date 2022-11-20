@@ -194,7 +194,7 @@
                                user="group5" password="BJTUgroup5"/>
                         <c:set var="userID" value="${cookie.username.value}"/>
             <sql:query dataSource="${snapshot}" var="result4">
-                SELECT ifnull(SUM(COUNT*PRICE),0) as S, ifnull(SUM(COUNT),0) as C, ifnull((100-SUM(COUNT*PRICE)),0) as B from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}";
+                SELECT ifnull(ROUND(SUM(COUNT*PRICE),1),0) as S, ifnull(SUM(COUNT),0) as C, ifnull(100-ROUND(SUM(COUNT*PRICE),1),0) as B from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}";
             </sql:query>
             <sql:query dataSource="${snapshot}" var="result5">
                 SELECT ifnull(name,"Not yet") as N from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}" ORDER BY count DESC limit 1;
@@ -337,17 +337,17 @@
                 <p><span>Total price(￥):</span></p>
               </div>
             </div>
+            <c:forEach var="row" items="${result4.rows}">
             <!-- Unnamed (Rectangle) -->
             <div id="u39" class="ax_default heading_1">
               <div id="u39_div" class=""></div>
               <div id="u39_text" class="text ">
                 <p><span>
-                  <%
-                    out.print("123");
-                  %>
+                  <c:out value="${row.S}"/>
                 </span></p>
               </div>
             </div>
+            </c:forEach>
 
             <!-- Unnamed (Rectangle) -->
             <div id="u40" class="ax_default primary_button" onclick="buy()">
