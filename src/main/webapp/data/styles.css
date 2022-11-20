@@ -23,6 +23,11 @@
 .primary_button {
   color:#FFFFFF;
 }
+
+.primary_button:hover {
+  color:yellowgreen;
+}
+
 .link_button {
   color:#1E98D7;
 }

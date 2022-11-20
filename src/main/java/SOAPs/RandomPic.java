@@ -35,21 +35,22 @@ public class RandomPic {
         rsn = databaseConnection.GetResultFromSqlQuery("SELECT COUNT(*) FROM store.goods");
         rsn.next();
         int nump = rsn.getInt(1);
+        int max = 5;
         int[] ID = new int[nump];
         Images images = new Images(nump);
         List<Integer> listRandom = new ArrayList<>();
         databaseConnection.CloseConnection();
         for(int i=1; i <=nump; i++) listRandom.add(i);
 
-        for(int i=0;i<nump;i++){
+        for(int i=0;i<max;i++){
             int index = getRandom(0,listRandom.size()-1);
             ID[i] =listRandom.get(index);
             listRandom.remove(index);
         }
-        
+
         ResultSet[] rs = new ResultSet[nump];
         String[] result = new String[nump];
-        
+
         for(int i=0;i<nump;i++){
             DatabaseConnection DatabaseConnection = new DatabaseConnection();
             rs[i] = DatabaseConnection.GetResultFromSqlQuery("SELECT image FROM store.goods WHERE ID="+ID[i]+";");
