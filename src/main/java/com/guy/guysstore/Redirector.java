@@ -10,7 +10,7 @@ public class Redirector {
         String[] addrs = new String[3];
         int[] ports = new int[3];
 
-        addrs[0] = "google.com";
+        addrs[0] = "8.141.158.243";
         addrs[1] = "192.168.43.26";
         addrs[2] = "127.0.0.1";
 
