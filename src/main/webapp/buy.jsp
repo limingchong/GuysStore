@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSetMetaData"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page import="javax.xml.ws.Endpoint" %>
 <%@ page import="SOAPs.TestService" %>
 <%@ page import="SOAPs.SimpleSoapClient" %>
@@ -29,7 +31,19 @@
     out.print("\n");
     for (String img : imgs) out.print("<image src=\""+ img +"\"\\>\n");
     com.guy.guysstore.DatabaseConnection databaseConnection = new DatabaseConnection();
+    ResultSet rs = databaseConnection.GetResultFromSqlQuery("SELECT ifnull(ROUND(SUM(COUNT*PRICE),1),0) as S, ifnull(SUM(COUNT),0) as C, ifnull(100-ROUND(SUM(COUNT*PRICE),1),0) as B from goods INNER JOIN carts on goods.id= good_id Where user_id =" +"\""+ request.getParameter("username") +"\"");
+    ResultSetMetaData rsmd = rs.getMetaData();
+    float number =0;
+    while(rs.next()) 
+            {
+                number = rs.getFloat(rsmd.getColumnName(1));
+                out.print(number);
+            }
     int p = databaseConnection.InsertUpdateFromSqlQuery("DELETE FROM CARTS WHERE user_id ="+"\""+ request.getParameter("username") +"\"" );
+    int n = databaseConnection.InsertUpdateFromSqlQuery("UPDATE USERS SET BALANCE = BALANCE - "+ Float.toString(number) +" WHERE id = "+"\""+ request.getParameter("username") +"\"" );
+    out.print(p);
+    out.print(n);
+    
 %>
 </body>
 </html>

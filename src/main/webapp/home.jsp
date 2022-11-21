@@ -185,7 +185,7 @@
                                user="group5" password="BJTUgroup5"/>
                         <c:set var="userID" value="${cookie.username.value}"/>
             <sql:query dataSource="${snapshot}" var="result4">
-                SELECT ifnull(ROUND(SUM(COUNT*PRICE),1),0) as S, ifnull(SUM(COUNT),0) as C, ifnull(100-ROUND(SUM(COUNT*PRICE),1),0) as B from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}";
+                SELECT ifnull(ROUND(SUM(COUNT*PRICE),1),0) as S, ifnull(SUM(COUNT),0) as C, ifnull(1000-ROUND(SUM(COUNT*PRICE),1),0) as B from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}";
             </sql:query>
             <sql:query dataSource="${snapshot}" var="result5">
                 SELECT ifnull(name,"Not yet") as N from goods INNER JOIN carts on goods.id= good_id Where user_id = "${userID}" ORDER BY count DESC limit 1;
@@ -256,11 +256,11 @@
                     </div>
 
                     <!-- Heading (Rectangle) -->
-                    <div id="u31-1" class="ax_default heading_2 u31" data-label="Heading"
+                    <div id="u31-${row.id}" class="ax_default heading_2 u31" data-label="Heading"
                          style="width: 72px; height: 23px; left: 1032px; top: 65px;visibility: inherit">
-                      <div id="u31-1_div" class="u31_div" style="width: 72px; height: 23px;visibility: inherit"></div>
-                      <div id="u31-1_text" class="text u31_text" style="visibility: inherit">
-                        <p><span><c:out value="${row.price}"/></span></p>
+                      <div id="u31-${row.id}_div" class="u31_div" style="width: 72px; height: 23px;visibility: inherit"></div>
+                      <div id="u31-${row.id}_text" class="text u31_text" style="visibility: inherit">
+                        <p><span><c:out value="${row.reserve}"/></span></p>
                       </div>
                     </div>
 
@@ -526,7 +526,7 @@
             <div id="u63" class="ax_default heading_2">
               <div id="u63_div" class=""></div>
               <div id="u63_text" class="text ">
-                <p><span>Purchased:</span></p>
+                <p><span>In your cart:</span></p>
               </div>
             </div>
             <c:forEach var="row" items="${result4.rows}">
