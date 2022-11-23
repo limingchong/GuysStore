@@ -10,13 +10,13 @@ public class Redirector {
         String[] addrs = new String[3];
         int[] ports = new int[3];
 
-        addrs[0] = "8.141.158.243";
-        addrs[1] = "192.168.43.26";
+        addrs[0] = "127.0.0.1";
+        addrs[1] = "8.141.158.243";
         addrs[2] = "127.0.0.1";
 
         ports[0] = 8080;
-        ports[1] = 1995;
-        ports[2] = 8080;
+        ports[1] = 8080;
+        ports[2] = 1995;
 
         for (int i = 0; i < addrs.length; i++) {
             Socket server = new Socket();

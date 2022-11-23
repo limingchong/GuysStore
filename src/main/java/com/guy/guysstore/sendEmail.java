@@ -5,9 +5,9 @@
 package com.guy.guysstore;
 
 /**
- *
  * @author 罗宇森
  */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -19,11 +19,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 @ServerEndpoint("/sendEmail")
-public class sendEmail{
+public class sendEmail {
     private Scanner in;
     private String from = "arcturus9z@163.com";
     private PrintWriter out;
-    private String returnString,destAddress,title, body;
+    private String returnString, destAddress, title, body;
+
     @OnMessage
     public String echo(String message) throws SQLException, IOException {
         String str[] = message.split("\n");
@@ -32,12 +33,12 @@ public class sendEmail{
         title = str[0];
         String username = str[3];
         
-        
+        /*
         try {
             Socket s = new Socket("Smtp.163.com", 25);
             try {
                 in = new Scanner(s.getInputStream());
-                out = new PrintWriter(s.getOutputStream(), true/* 表示自动刷新 */);
+                out = new PrintWriter(s.getOutputStream(), true );//表示自动刷新
                 String hostName = InetAddress.getLocalHost().getHostName();
                 receive();
                 send("HELO " + hostName);// 握手，成功返回220表示服务就绪
@@ -62,9 +63,71 @@ public class sendEmail{
         int r = databaseConnection.InsertUpdateFromSqlQuery("INSERT INTO FEEDBACKS VALUES(\"" + username + "\",\"" + body + "\",\"" + title + "\",\"" + destAddress + "\")" );
         databaseConnection.CloseConnection();
 
-        return returnString;
+         */
+
+        body = "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"color:#337fe5;\"><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\">Your feedback:</span></span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"color:#337fe5;\"><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\"><br />\n" +
+                "</span></span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"color:#337fe5;\"><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\"><br />\n" +
+                "</span></span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<br />\n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<strong><span style=\"font-size:24px;color:#337FE5;\" class=\"ke-content-forecolor\">"+ title + "</span></strong> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><br />\n" +
+                "</span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><em>\"</em></span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><em>&nbsp;&nbsp;&nbsp;&nbsp;</em><em>&nbsp;&nbsp;&nbsp;&nbsp;</em><em>"+ body +"</em></span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><em>\"</em><br />\n" +
+                "</span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><br />\n" +
+                "</span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><br />\n" +
+                "</span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><span style=\"font-family:Arial;\"><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\">w</span><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\">ill be replied within 5 days.</span></span></span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><br />\n" +
+                "</span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:16px;color:#337FE5;\" class=\"ke-content-forecolor\"><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\"></span><br />\n" +
+                "</span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\">Best regards,</span> \n" +
+                "</p>\n" +
+                "<p style=\"font-family:Arial;\">\n" +
+                "\t<span style=\"color:#337fe5;\"><span style=\"font-size:16px;\"><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\">Team </span><span style=\"font-size:13px;color:#000000;\" class=\"ke-content-forecolor\">Guy's Store</span></span></span> \n" +
+                "</p>";
+        SendMailThread sendMailThread = new SendMailThread(destAddress, "Guy's Store: Your feedback will be replied within 5 days.", body, "19726006@bjtu.edu.cn","");
+        sendMailThread.sendMail();
+
+        return "ok";
     }
-    private void authentication(){
+
+    private void authentication() {
         send("Auth Login");
         receive();
         String username = "arcturus9z@163.com";
@@ -72,19 +135,20 @@ public class sendEmail{
         send(username_encoded);
         receive();
         String password = "IVNNZYSVGXNDABUQ";
-        String password_encoded = java.util.Base64.getEncoder().encodeToString(password.getBytes()) ;
+        String password_encoded = java.util.Base64.getEncoder().encodeToString(password.getBytes());
         send(password_encoded);
         receive();
     }
-    private void sendMessage(String from,String to,String message)
-    {
+
+    private void sendMessage(String from, String to, String message) {
         send("DATA");//表示开始发邮件内容了
         receive();
-        send("From:"+ from);
+        send("From:" + from);
         //receive();
-        send("To:"+ to);
+        send("To:" + to);
         //receive();
-        send("Subject: Your Feedback of " +title+" : " +body +  " Received");
+        send("Subject: Your Feedback of [" + title + "]");
+        send("Body: " + body);
         //receive();
         send(message);//发送邮件内容
         send(".");
@@ -93,7 +157,7 @@ public class sendEmail{
 
     private void send(String s) {
 
-        returnString+=(s + '\n');
+        returnString += (s + '\n');
 
         out.print(s);
 
@@ -106,7 +170,8 @@ public class sendEmail{
 
     private void receive() {
 
-        returnString+=(in.nextLine() + '\n');
+        returnString += (in.nextLine() + '\n');
 
     }
+
 }
